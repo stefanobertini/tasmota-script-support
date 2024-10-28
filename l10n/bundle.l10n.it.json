@@ -1,0 +1,10 @@
+{
+    "No open file.": "Nessun file aperto",
+    "Uploading to {0}": "Carico lo script su {0}",
+    "Please, insert a comment line with the ip address of your device.\n\n;IP=<your tasmota device ip>": "Inserisci una riga con l'ip del tuo dispositivo\n\n;IP=<ip del dispositivo tasmota>",
+    "Error uploading file: {0}": "Errore durate l'upload del file: {0}",
+    "File sent to: {0}, status: {1}, message: {2}": "File inviato a: {0}, stato: {1}, messaggio: {2}",
+    "Script Size {0} ({1}) ({2})": "Dim. script: {0} ({1}) ({2})",
+    "Script Size {0} ({1})": "Dim. script: {0} ({1})",
+	"Script Size {0}": "Dim. script: {0}"
+}

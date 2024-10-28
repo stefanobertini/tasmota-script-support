@@ -1,0 +1,7 @@
+{
+    "commandUpload.title": "Upload script to Tasmota",
+    "commandNewScript.title": "Create new Tasmota script",
+    "tasmota-script-support.uploadTimeout":"Specifies the upload timeout (in milliseconds) used during script uploads.",
+    "tasmota-script-support.scriptSizeStatusBarItemRefreshTimeout":"Refresh timeout for status bar indicator (in milliseconds). Is the time the editor waits from your last typing to update the stripped size of your script.",
+    "tasmota-script-support.customTemplatePath":"Is the path to a custom template to be used by the 'Create new Tasmota script' command."
+}

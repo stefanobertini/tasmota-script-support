@@ -1,0 +1,147 @@
+{
+  "name": "tasmota-script-support",
+  "displayName": "Tasmota Script Language Support",
+  "description": "A Tasmota Script Support",
+  "publisher": "StefanoBertini",
+  "icon": "./media/tasmota.png",
+  "version": "1.0.0",
+  "license": "CC-BY-NC-SA-4.0",
+  "l10n": "./l10n",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "tasmota",
+    "script",
+    "esp32",
+    "esp8266"
+  ],
+  "pricing": "Free",
+  "bugs": {
+    "url": "https://github.com/stefanobertini/tasmota-script-support/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefanobertini/tasmota-script-support.git"
+  },
+  "homepage": "https://github.com/stefanobertini/tasmota-script-support/main/README.md",
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tasmota-script-support.commandUpload",
+        "title": "%commandUpload.title%"
+      },
+      {
+        "command": "tasmota-script-support.commandNewScript",
+        "title": "%commandNewScript.title%"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Tasmota Script Support Upload Configuration",
+      "properties": {
+        "tasmota-script-support.uploadTimeout": {
+          "type": "number",
+          "default": 10000,
+          "description": "%tasmota-script-support.uploadTimeout%"
+        },
+        "tasmota-script-support.scriptSizeStatusBarItemRefreshTimeout": {
+          "type": "number",
+          "default": 1500,
+          "description": "%tasmota-script-support.scriptSizeStatusBarItemRefreshTimeout%"
+        },
+        "tasmota-script-support.customTemplatePath": {
+          "type": "String",
+          "default": "",
+          "description": "%tasmota-script-support.customTemplatePath%"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "tasmota",
+        "aliases": [
+          "Tasmota Script",
+          "tasmota"
+        ],
+        "extensions": [
+          "tas",
+          "tasmota"
+        ],
+        "configuration": "./language/language-configuration.json"
+      }
+    ],
+    "localizations": [
+      {
+        "languageId": "en",
+        "languageName": "English",
+        "localizedLanguageName": "English",
+        "translations": [
+          {
+            "id": "StefanoBertini.tasmota-script-support",
+            "path": "./l10n/package.nls.json"
+          }
+        ]
+      },
+      {
+        "languageId": "it",
+        "languageName": "Italian",
+        "localizedLanguageName": "Italiano",
+        "translations": [
+          {
+            "id": "StefanoBertini.tasmota-script-support",
+            "path": "./l10n/package.nls.it.json"
+          }
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tasmota",
+        "scopeName": "source.tasmota",
+        "path": "./language/tasmota.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "tasmota",
+        "path": "./language/snippets.json"
+      }
+    ],
+    "keybindings": [
+			{
+				"command": "tasmota-script-support.commandUpload",
+				"key": "ctrl+alt+u",
+				"mac": "cmd+alt+u",
+				"when": "editorFocus && editorLangId == 'tasmota'"
+			}
+		]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test",
+    "mergeHoverTemplates": "node ./hover-templates/mergeMarkdown.js",
+    "prepackage": "npm run mergeHoverTemplates",
+    "package": "npm run prepackage && vsce package"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.93.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.9.1"
+  },
+  "dependencies": {
+    "@vscode/l10n": "^0.0.18",
+    "axios": "^1.7.7",
+    "form-data": "^4.0.0",
+    "handlebars": "^4.7.8"
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "comments": {
+        // symbol used for single line comment. Remove this entry if your language does not support line comments
+        "lineComment": ";"
+    },
+    // symbols used as brackets
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    // symbols that are auto closed when typing
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"]
+    ],
+    // symbols that can be used to surround a selection
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["'", "'"]
+    ],
+    
+        "folding": {
+          "markers": {
+            "start": "^\\s*(>(D|B|BS|E|F|S|R|T|H|U|C|G|P|jp|t1|t2|t3|t4|b|J|W|WS|WM))\\b",
+            "end": "(?=^\\s*(>(D|B|BS|E|F|S|R|T|H|U|C|G|P|jp|t1|t2|t3|t4|b|J|W|WS|WM))\\b|\\z"
+          }
+        }
+      
+}

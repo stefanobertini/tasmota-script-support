@@ -1,0 +1,142 @@
+{
+  "Add #define": {
+    "prefix": ["#define"],
+    "body": ["#define ${1:DEBUG}"],
+    "description": "Add #define DEBUG"
+  },
+  "Add #ifdef block": {
+    "prefix": ["#ifdef"],
+    "body": ["#ifdef ${1:DEBUG}", "\t${2:do_this}", "#endif"],
+    "description": "Add #ifdef DEBUG block"
+  },
+  "Add #ifndef block": {
+    "prefix": ["#ifndef"],
+    "body": ["#ifndef ${1:DEBUG}", "\t${2:do_this}", "#endif"],
+    "description": "Add #ifndef DEBUG block"
+  }, 
+  "Add Device ip Comment": {
+    "prefix": [";ip"],
+    "body": [";IP=${1:variable}"],
+    "description": "Add Device ip Comment"
+  },
+  "Add StripComments": {
+    "prefix": [";stripcomments", "stripcomments"],
+    "body": [";stripcomments"],
+    "description": "Add ;stripcomments"
+  },
+  "Add ScriptSize": {
+    "prefix": [";scriptsize", "scriptsize"],
+    "body": [";scriptsize=2560"],
+    "description": "Add ;scriptsize=2560"
+  },
+  "Create a button input component": {
+    "prefix": ["bu"],
+    "body": ["bu(${1:variable} \"${2:text-on}\" \"${3:text-off}\")"],
+    "description": "Create a button"
+  },
+  "Create a puilldown input component": {
+    "prefix": ["pd"],
+    "body": [
+      "pd(${1:variable} \"${2:label}\" ${3:opt-size} \"${4:entry}\" \"${5:entry}\" \"${6:entry}\")"
+    ],
+    "description": "Create a puilldown"
+  },
+  "Create a radiobutton input component": {
+    "prefix": ["rb"],
+    "body": [
+      "rb(${1:variable} \"${2:label}\" ${3:opt-size} \"${4:entry}\" \"${5:entry}\" \"${6:entry}\")"
+    ],
+    "description": "Create a radiobutton"
+  },
+  "Create a checkbox input component": {
+    "prefix": ["ck"],
+    "body": ["ck(${1:variable} \"${2:label}\" ${3:opt-size})"],
+    "description": "Create a checkbox"
+  },
+  "Create a slider input component": {
+    "prefix": ["sl"],
+    "body": [
+      "sl(${1:min} ${2:max} ${3:variable} \"${4:left-text}\" \"${5:middle-text}\" \"${5:rightt-text}\")"
+    ],
+    "description": "Create a slider"
+  },
+  "Create a text input component": {
+    "prefix": ["tx"],
+    "body": [
+      "tx(${1:variable} \"${2:label}\" ${3:opt-size} \"${4:opt-type}\" \"${5:opt-min}\" \"${6:opt-max}\")"
+    ],
+    "description": "Create a text"
+  },
+  "Create a time input component": {
+    "prefix": ["tm"],
+    "body": ["tm(${1:variable} \"${2:label}\" ${3:opt-size})"],
+    "description": "Create a time"
+  },
+  "Create a number input component": {
+    "prefix": ["nm"],
+    "body": [
+      "nm(${1:min} ${2:max} ${3:step} ${4:variable} \"${5:label}\" ${6:opt-size} ${7:opt-precision})"
+    ],
+    "description": "Create a slider"
+  },
+  "Set display special options": {
+    "prefix": ["so"],
+    "body": [
+      "so(WSO_NOCENTER or WSO_NODIV or WSO_FORCEPLAIN or WSO_FORCEMAIN)"
+    ],
+    "description": "Create special options"
+  },
+  "Create a mapping function": {
+    "prefix": ["mp"],
+    "body": [
+      "mp(${1:variable} ${2:cond_1} ${3:result_1} ${4:cond_2} ${5:result_2} ${6:cond_n} ${7:result_n})"
+    ],
+    "description": "Create a mapping function"
+  },
+  "Create a sendmail command": {
+    "prefix": ["send", "sendmail"],
+    "body": [
+      "sendmail [${1:server}:${2:port}:${3:user}:${4:passwd}:${5:from}:${6:to}:${7:subject}] ${8:message}"
+    ],
+    "description": "Create a sendmail command"
+  },
+  "Create a for-next loop": {
+    "prefix": ["for"],
+    "body": [
+      "for(${1:variable} ${2:from} ${3:to} ${4:increment})",
+      "\t$5",
+      "next"
+    ],
+    "description": "Create a for-next loop"
+  },
+  "Create a switch-case": {
+    "prefix": ["switch"],
+    "body": ["switch ${1:variable}", "\tcase ${2:a}", "\tcase ${3:b}", "ends"],
+    "description": "Create a switch-case"
+  },
+  "Create an inline if-then-else": {
+    "prefix": ["if"],
+    "body": [
+      "if ${1:condition}",
+      "and ${2:condition}",
+      "or ${3:condition}",
+      "then ${4:do_this}",
+      "else ${5:do_that}",
+      "endif"
+    ],
+    "description": "Create an inline if-then-else"
+  },
+  "Create a multiline if-then-else": {
+    "prefix": ["if"],
+    "body": [
+      "if ${1:condition}",
+      "and ${2:condition}",
+      "or ${3:condition} {",
+      "\t${4:do_this}",
+      "} else {",
+      "\t${5:do_that}",
+      "}"
+    ],
+    "description": "Create a multiline if-then-else"
+  }
+}

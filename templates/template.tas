@@ -1,0 +1,73 @@
+;Device setup commands
+;Backlog MqttHost 192.168.1.xxx; MqttPort 1883; MqttClient DVES_%06X; MqttUser xxxx; MqttPassword xxxx; Topic xxxx; MqttEnable 1;
+;Backlog Restart 1
+
+;IP=<your tasmota device ip>
+;stripcomments
+;scriptsize=2560
+
+>D ssize ; variables definition with optional String Size 
+
+p:vname ;specifies permanent variables.
+t:vname ;specifies countdown timers,
+i:vname ;specifies auto increment counters 
+g:vname ;specifies global variable
+I:vname ;specifies an integer 32 bit variable
+m:vname ;specifies a median filter variable
+M:vname ;specifies a moving average filter variable
+m:p:vname ;defines a permanent array.
+
+;This is and example on how to use hover variable support.   
+;
+;This variable is **very useful** and it has several meanings:
+;- 0 = Means zero
+;- 1 = Means one
+;- 2 = Means two
+example_variable_hover
+
+>B ;executed on BOOT time before sensors are initialized and on save script
+
+
+>BS ;executed on BOOT time after sensors are initialized
+
+>E ;executed when a Tasmota MQTT RESULT message is received, e.g., on POWER change. Also Zigbee reports to this section.
+
+>F ;executed every 100 ms
+
+>S ;executed every second
+
+>R ;executed on restart. p vars are saved automatically after this call
+
+>T ;executed at least at TelePeriod time (SENSOR and STATE) but mostly faster up to every 100 ms, only put tele- vars in this section
+
+>H ;Alexa Hue interface 
+
+>h ;passcode ;Siri Homekit interface (up to 16 virtual Homekit devices)
+
+>U ;JSON messages from cmd status arrive here
+
+>C ;HTML messages arrive here (on web user io event, (if defined USE_HTML_CALLBACK))
+
+>G ;global variable updated section
+
+>P ;any power change triggers here (if defined SCRIPT_POWER_SECTION)
+
+>jp ;https webpage json parse arrives here
+
+>t1 ;callback for task 1
+>t2 ;callback for task 2
+
+>ti1 ;ticker callback after timer expiration
+>ti2 ;ticker callback after timer expiration
+>ti3 ;ticker callback after timer expiration
+>ti4 ;ticker callback after timer expiration
+
+>b ;executed on button state change
+
+>J ;The lines in this section are published via MQTT in a JSON payload on TelePeriod. 
+
+>W ;The lines in this section are displayed in the web UI main page. 
+
+>WS ;HTML statements are displayed in the sensor section of the main page
+
+>WM ;HTML statements are displayed in the main section of the main page

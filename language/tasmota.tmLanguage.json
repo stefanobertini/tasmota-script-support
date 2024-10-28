@@ -1,0 +1,417 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Tasmota Script",
+  "foldingStartMarker": "^\\s*(>(D|B|BS|E|F|S|R|T|H|h|U|C|G|P|jp|t1|t2|t3|t4|b|J|W|WS|WM))\\b",
+  "foldingStopMarker": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM])|\\z",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#macros"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#functions"
+    },        
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#json-entities"
+    },
+    {
+      "include": "#json-functions"
+    },    
+    {
+      "include": "#folding"
+    },
+    {
+      "include": "#blocks"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.tasmota",
+          "match": "\\s*;.*"
+        }
+      ]
+    },
+    "macros": {
+      "patterns": [
+        {
+          "match": "^\\s*#(define|ifdef|ifndef)\\s+(.*)",
+          "captures": {
+            "1": { "name": "meta.preprocessor.string.tasmota" },
+            "2": { "name": "constant.character.entity.tasmota" }
+          }
+        },
+        {
+          "name": "meta.preprocessor.string.tasmota",
+          "match": "^\\s*#endif\\b"
+        }        
+      ]
+    },  
+     "variables": {
+      "patterns": [
+        {
+          "match": "%(\\d*)(.+?)%",
+          "captures": {
+            "1": { "name": "constant.numeric.tasmota" },
+            "2": { "name": "variable.language.tasmota", "patterns": [
+               {"include":"#functions"}
+            ] }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.tasmota",
+          "match": "\\b(%for|%next|break|case|else|endif|ends|for|if|next|return|switch|then)\\b"
+        },
+        {
+          "name": "keyword.operator.tasmota",
+          "match": "\\b(and|or)\\b"
+        },        
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(sensor|print|sendmail)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "comment": "Function without arguments",
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Epoch|OFF|ON|Status|boot|cbs|core|ctper|day|dt|dp\\d|dp\\d\\.\\d|dvnm|epoch|epoffs|eres|freq|frnm|fsm|fxt|ghum|gprs|gtmp|gtopic|gvr|heap|hours|ia|ir|iw|lip|loglvl|luip|maca|mail|micros|millis|mins|month|mqttc|mqttd|mqtts|npwr|pheap|prefix1|prefix2|prefix3|print|pwm|ram|rapp|rax|rrsn|secs|slen|smlj|stack|stkwm|sunrise|sunset|svars|time|tinit|topic|tper|tset|tstamp|upsecs|uptime|wbut|wcf|wcs|wday|wdclk|wdh:|wfs|wific|wifid|wifis|wlp|wm|year)\\b"
+        },
+        {
+          "comment": "Function with index",
+          "match": "\\b(bt|chg|diff|enrg|is1|is2|is|pc|pd|pin|pn|pwr|sht|sml|smls|smlv|sw|tbut|upd)\\[(.*?)\\]",
+          "captures": {
+            "1": { "name": "entity.name.function.tasmota" },
+            "2": { "name": "constant.numeric.tasmota" }
+          }
+        },
+        {
+          "comment": "Function with parentheses",
+          "match": "\\b(abs|acos|acp|adc|af|ap|as|asc|bcd|bdir|beep|bu|c2ps|ceil|ck|codec|cos|cpf|ct|cts|delay|dp|f|fa|fc|fcs|fd|fe|ff|fl1|fl2|floor|flx|fmd|fmt|fo|fr|fra|frb|frd|frln|frn|frw|fxto|fs|fsi|ft|fw|fwa|fwb|fwp|fx|fz|gc|gi|gjp|gpwl|gwr|hd|hf|hki|hn|hni|hstr|hsvrgb|http|hx|hxi|i|i2sw|in2|ins|int|is|is1|is2|jpg|knx|lfw|log|lvgl|med|mo|mp|mpt|mux|nm|ow|pd|pl|pow|pwav|pwm\\d|rad|rb|rec|rma|rnd|round|rr|rwd|s|s2hms|s2t|sa|sas|say|sb|sc|sf|sin|sl|slp|sml|smld|smls|smw|so|sp|spi|spin|spinm|sqrt|sr|sra|srb|st|sw|swa|swb|tc|test|tm|ts1|ts2|ts3|ts4|tsn|tso|ttget|tx|udp|wav2mp3|wc|ws2812|wsa|wsc|wsf|wso|wsra|wsrs|wswa|wsws|wtch|wwd|)\\(((?:\"[^\"]*\"|[^()\"]*)*)\\)",
+          "captures": {
+            "1": { "name": "entity.name.function.tasmota" },
+            "2": { "name": "variable.parameter" }
+          }
+        }
+      ]
+    },
+    "json-entities": {
+      "patterns": [
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(ADS1115|ADS1115_I2CDEV|AHT1X|ANALOG|APDS9960|AS3935|AZ7798)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(BH1750|BME280|BMP|BMP280)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(CCS811|CHIRP|COUNTER|CSE7766)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(DHT|DHT12|DS1624|DS18B20|DS18X20|DS18X20_LEGACY|DS3231)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(GPS)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(HDC1080|HIH_SERIES|HLW8012|HPMA|HRE|HRXL|HTU21|HX711)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(IAQ|IBEACON|INA219|INA226|INTERFACE|INTERFACE)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(LM75AD)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(MAC|MAJOR|MAX31855|MAX31865|MAX44009|MCP230XX|MCP39F501|MGC3130|MGS|MHZ19|MI_HM10|MI_NRF24|MINOR|MLX90614|MPR121|MPU6050)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(NOVASDS)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(OPENTHERM)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(PAJ7620|PMS5003|PN532_I2C|PZEM_AC|PZEM_DC|PZEM004T)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(RDM6300|RFSENSOR)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(SCD30|SDM120|SDM630|SENSEAIR|SGP30|SHT1X|SHT3X|SHT3X_0x44|SI1145|SML|SNFSC|SOLAXX1|SPS30|SR04)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(TM1638|TSL2561|TSL2591|TX20)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(UID)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(VEML6070|VL53L0X|VL53L0X)\\b"
+        },
+        {
+          "name": "support.class.tasmota",
+          "match": "\\b(WEMOHUE|WINDMETER|WS2812)\\b"
+        }
+      ]
+    },
+    "json-functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Aborted|Action|Active|ActivePower|ADC|AdcParam|ADCs|Address|AirQuality|Altitude|AmpRes|Analog|Ap|APMac|ApparentPower|Appended|Arm)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Backlog|BASE|Baudrate|Beep|Bind|BindState|Bits|Blink|BlinkCount|BlinkTime|Blocked Loop|Boot|BootCount|BriPreset|BSSId|BuildDateTime|Button|ButtonDebounce|ButtonRetain|ButtonTopic)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Calibration|CarbonDioxide|CC2530|Celsius|CfgHolder|Channel|Clean|Clock|Close|CloseDuration|Cluster|cmnd|Color|Command|Config|Connect failed|Core|CORS|Count|Counter|CT|Current|CurrentHigh|CurrentLow|CurrentSet)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Darkness|Data|DataLSB|Days|Delay|DevGroupName|DevGroupSend|DevGroupShare|DevGroupStatus|Device|DeviceName|DewPoint|Dimmer|DimmerRange|Distance|DNSServer|doMove|Done|doRotate|doTurn|Down|Downtime|Driver|dynamic)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(eCO2|Econo|Empty|Emulation|EnableEndStopTime|EndDST|Endpoint|Energy|EnergyMonitor|EnergyRes|EnergyReset|Erase|Error|Event|Every|Export|ExportActive|ExportReactive)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Factor|Fade|Failed|FallbackTopic|FanSpeed|Features|Filter|FLAG|FlashChipId|FlashMode|FlashSize|FlowRate|Forget|Free|FreqRes|Frequency|FrequencySet|FriendlyName|FullTopic|FWR)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Gas|Gateway|GlobalHum|GlobalTemp|GPIO|GPIOs|Group|Groups|GroupTopic)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Hash|HASS_STATE|Heap|High|Hostname|HotPlug|HSBColor|Humidity|HumOffset|HumRes)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(I2CDriver|I2CScan|Id|IEEEAddr|Illuminance|ImportActive|ImportReactive|INFO|Infrared|Interlock|inttime|Invert|InvertWebButtons|IPAddress|IRHVAC|IrReceived|IRSend)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Latitude|Led|LedMask|LedPower|LedPwmMode|LedPwmOff|LedPwmOn|LedState|LedTable|Light|LinkCount|LinkQuality|Local|Lock|LOG|LogHost|LogPort|Longitude|Low)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Mac|ManagerRst|Manuf|MARGINS|Mask|MaxEnergy|MaxEnergyReached|MaxEnergyStart|MaxPower|MaxPowerHold|MaxPowerReached|MaxPowerReachedRetry|MaxPowerWindow|MEM|minimal|Mode|Model|ModelId|Module|Modules|Moisture|MOTOR|MotorDelay|MQT|MqttClient|MqttCount|MqttFingerprint|MqttHost|MqttLog|MqttPassword|MqttPort|MqttRetry|MqttUser)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Name|NET|Noise|None|Not supported|NtpServer)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Open|OpenDuration|OtaUrl|Output)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Palette|Password|Period|PermitJoin|PhaseAngle|Ping|Pixels|Position|power|PowerDelta|PowerHigh|PowerLow|PowerMonitor|PowerOnState|PowerRetain|PowerSet|Prefix|PressRes|Pressure|PressureUnit|PRM|Probe|ProbeTemperature|ProgramFlashSize|ProgramSize|Protocol|PsrFree|PsrMax|PTH|Publish|PulseTime|Pv1Current|Pv1Power|Pv1Voltage|Pv2Current|Pv2Power|Pv2Voltage|PWM|PWMFrequency|PWMRange|PWR)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Quiet)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Range|RawData|ReactivePower|Read|ReferenceTemperature|Relay|Remaining|Repeat|Report|Reset|Resistance|Resolution|Response|Restart|Restarting|RestartReason|Restore|RESULT|Retry|RfCode|RfHigh|RfHost|RfKey|RfLow|RfRaw|RfReceived|RfSync|RGBWWTable|Rotation|RSSI|Runtime)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(SafePower|SafePowerHold|SafePowerWindow|Save|SaveAddress|SaveCount|Saved|SaveData|SaveState|SBaudrate|Scheme|SDK|SeaPressure|selected|Send|Sendmail|Sensor|SensorRetain|SequenceOffset|Serial|SerialConfig|SerialDelimiter|SerialLog|SerialReceived|SerialSend|Set|SetClose|SetHalfway|setMIS|SetOpen|SetOption|setRPM|setSPR|Shutter|Signal|Sleep|SNS|SO|SolarPower|Speed|SpeedUnit|SSerialReceived|SSerialSend|SSId|Stage|StartDST|Started|StartupUTC|stat|State|StateText|Status|StatusMessage|STK|Stop|StopClose|StopOpen|StopPosition|StopToggle|STS|Subnetmask|Successful|Sunrise|Sunset|SwingH|SwingV|Switch|SwitchDebounce|SwitchMode|SwitchRetain|SwitchTopic|Sync|SysLog)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(tele|TelePeriod|Temperature|Template|TempOffset|TempRes|TempUnit|Temp|TIM|Time|TimeDst|Timer|Timers|TimeStd|Timezone|TLSKey|Today|Toggle|Topic|Total|TotalActive|TotalReactive|TotalStartTime|TotalUsage|TouchCal|TouchNum|TouchThres|Turbo|TuyaMCU|TuyaReceived|TuyaSend|TVOC|Type)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Unbind|Unknown|Up|Upgrade|Upload|Uptime|Usage|UTC|UvaIntensity|UvbItensity|UvIndex|UvIndexText|UvLevel|UvPower)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Vcc|Vendor|Version|Voltage|VoltageHigh|VoltageLow|VoltageSet|VoltRes)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Wait|Wakeup|WakeUpDuration|WARNING|WattRes|WebButton|WebColor|WebLog|WebPassword|WebRefresh|WebSend|WebSensor|Webserver|WebServerMode|Weight|WeightRes|White|WhiteContent|Width|Wifi|WifiConfig|WifiManager|WifiPower|Window|Write|Wrong|Wrong parameters)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Yesterday)\\b"
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "match": "\\b(Zb|ZbBind|ZbBindState|ZbConfirm|ZbPing|ZbReceived|ZbResponse|ZbState|ZbUnbind|ZbZCLRawReceived|ZbZCLReceived|ZbZCLSent|ZbZNPReceived|ZbZNPSent|Zero Point Calibration|ZNPReceive|ZNPSend)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.tasmota",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.tasmota",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "folding": {
+      "markers": {
+        "start": "^\\s*if\\b",
+        "end": "^\\s*endif\\b"
+      }
+    },
+    "blocks": {
+      "patterns": [
+        {
+          "name": "meta.block.et.tasmota",
+          "begin": "^\\s*(>(E|T))\\b",
+          "beginCaptures": {
+            "0": { "name": "keyword.block.start" }
+          },
+          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "patterns": [
+            {
+              "include": "#json-entities"
+            },
+            {
+              "include": "#json-functions"
+            },
+            {
+              "include": "#language"
+            }
+          ]
+        },
+        {
+          "name": "meta.block.d.tasmota",
+          "begin": "^\\s*(>(D))\\b",
+          "beginCaptures": {
+            "0": { "name": "keyword.block.start.tasmota" }
+          },
+          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "patterns": [
+            {
+              "name": "storage.modifier.tasmota",
+              "match": "[ptigImM]:"
+            },
+            {
+              "include": "#comments"
+            }
+          ]
+        },
+        {
+          "name": "meta.block.w.wm.ws.tasmota",
+          "begin": "^\\s*(>(W|WS|WM))\\b",
+          "beginCaptures": {
+            "0": { "name": "keyword.block.start.tasmota" }
+          },
+          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "patterns": [
+            {
+              "include": "#language"
+            }
+          ]
+        },
+        {
+          "name": "meta.block.tasmota",
+          "begin": "^\\s*(>(B|BS|F|S|R|H|h|U|C|G|P|jp|t1|t2|ti1|ti2|ti3|ti4|b|J))\\b",
+          "beginCaptures": {
+            "0": { "name": "keyword.block.start.tasmota" }
+          },
+          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "patterns": [
+            {
+              "include": "#language"
+            }
+          ]
+        },
+        {
+          "name": "entity.name.function.tasmota",
+          "begin": "^(#(?!define|ifdef|ifndef|endif)\\w+)",
+          "beginCaptures": {
+            "0": { "name": "entity.name.function.tasmota" }
+          },
+          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "patterns": [
+            {
+              "include": "#json-entities"
+            },
+            {
+              "include": "#json-functions"
+            },
+            {
+              "include": "#language"
+            }
+          ]
+        }
+      ]
+    },
+    "language": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#macros"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#functions"
+        },        
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#variables"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.tasmota"
+}

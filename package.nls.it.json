@@ -1,0 +1,7 @@
+{
+    "commandUpload.title": "Carica lo script su Tasmota",
+    "commandNewScript.title": "Crea un nuovo script Tasmota",
+    "tasmota-script-support.uploadTimeout":"Specifica il timeout (in millisecondi) utilizzato durante il caricamento dello script.",
+    "tasmota-script-support.scriptSizeStatusBarItemRefreshTimeout":"Il timeout (in millisecondi) dell'indicatore di conteggio nella barra di stato. E' il tempo di attesa dell'editor per aggiornare i totali dopo l'ultima modifica allo script.",
+    "tasmota-script-support.customTemplatePath":"Path ad un file di template personale da utilizzare nel comando 'Crea un nuovo script Tasmota'"
+}
