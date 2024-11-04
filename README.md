@@ -40,7 +40,7 @@ Just add `;stripcomments` in your script file to activate this feature.
   To use this feature, add `;scriptsize=<max_script_size>` in your script file to specify the maximum script dimension.  The check will not take into account the script compression algorithm executed by Tasmota.
 
 ## #define, ifdef and ifndef preprocessor macros
-![preproc\5gessor](https://github.com/stefanobertini/tasmota-script-support/blob/develop/media/preprocessor.gif?raw=true)
+![preprocessor](https://github.com/stefanobertini/tasmota-script-support/blob/develop/media/preprocessor.gif?raw=true)
 
 
 Dynamically add or remove parts of code in your script without having to comment and uncomment entire blocks of lines, simply by using preprocessor commands like `#define`, `#ifdef`, `#ifndef`.   
