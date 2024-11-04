@@ -5,12 +5,18 @@ Streamline your ***Tasmota scripting*** workflow with this Visual Studio Code ex
 This extension enhances the editing experience, adding features to manage code developement and allowing you to upload the script you're working on directly to your device with a single command.
 
 Key features:
+- [Syntax Highlighting](#Syntax-Highlighting)
 - [Automatic script upload](#Automatic-script-upload)
 - [#define, ifdef and ifndef preprocessor macros](##define,-ifdef-and-ifndef-preprocessor-macros)
 - [Code Folding](#Code-Folding)
 - [Hover hints on tasmota functions and variables documentation](#Hover-hints-on-tasmota-functions-and-variables-documentation)
 - [Code Snippets](#Code-Snippets)
 - [New Script Template](#New-Script-Template)
+
+## Syntax Highlighting
+![Syntax Highlighting](https://github.com/stefanobertini/tasmota-script-support/blob/develop/media/syntax-highlighting.gif?raw=true)
+
+Simply save your scripts using the `.tas` or `.tasmota` extension to activate Tasmota grammar syntax highlighting.  
 
 ## Automatic script upload
 ![Script Upload](https://github.com/stefanobertini/tasmota-script-support/blob/develop/media/upload.gif?raw=true)
@@ -31,10 +37,10 @@ Just add `;stripcomments` in your script file to activate this feature.
   -  the 'cleaned' script size (between ( ) )
   -  the remaining available characters (between [ ])  
 
-  To use this feature, add `;scriptsize=<max_script_size>` in your script file.
+  To use this feature, add `;scriptsize=<max_script_size>` in your script file to specify the maximum script dimension.  The check will not take into account the script compression algorithm executed by Tasmota.
 
 ## #define, ifdef and ifndef preprocessor macros
-![preprocessor](https://github.com/stefanobertini/tasmota-script-support/blob/develop/media/preprocessor.gif?raw=true)
+![preproc\5gessor](https://github.com/stefanobertini/tasmota-script-support/blob/develop/media/preprocessor.gif?raw=true)
 
 
 Dynamically add or remove parts of code in your script without having to comment and uncomment entire blocks of lines, simply by using preprocessor commands like `#define`, `#ifdef`, `#ifndef`.   
