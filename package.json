@@ -4,7 +4,7 @@
   "description": "A Tasmota Script Support",
   "publisher": "StefanoBertini",
   "icon": "./media/tasmota.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "CC-BY-NC-SA-4.0",
   "l10n": "./l10n",
   "engines": {
