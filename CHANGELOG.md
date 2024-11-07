@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.2] - 2024-11-05
+
+### Fixed
+- Added "Syntax Highlighting" section in readme.md
+
+
 ## [1.0.1] - 2024-10-28
 
 ### Fixed

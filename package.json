@@ -1,10 +1,10 @@
 {
   "name": "tasmota-script-support",
   "displayName": "Tasmota Script Language Support",
-  "description": "A Tasmota Script Support",
+  "description": "A Tasmota Script Support Extension",
   "publisher": "StefanoBertini",
   "icon": "./media/tasmota.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "CC-BY-NC-SA-4.0",
   "l10n": "./l10n",
   "engines": {
