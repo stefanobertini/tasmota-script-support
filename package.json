@@ -1,7 +1,7 @@
 {
   "name": "tasmota-script-support",
   "displayName": "Tasmota Script Language Support",
-  "description": "A Tasmota Script Support",
+  "description": "A Tasmota Script Support Extension",
   "publisher": "StefanoBertini",
   "icon": "./media/tasmota.png",
   "version": "1.0.2",
