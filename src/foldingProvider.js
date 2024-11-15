@@ -3,7 +3,7 @@ const vscode = require('vscode');
  function provideFoldingRanges(document, context, token) {
 
     const foldingRanges = [];
-    const startPattern = /^\s*>(B|BS|D|E|F|S|R|H|h|U|C|G|P|jp|T|t1|t2|ti1|ti2|ti3|ti4|b|J|W|WS|WM).*$/;  // Match lines containing > code block start
+    const startPattern = /^\s*>(B|BS|D|d|E|F|S|R|H|h|U|C|G|P|jp|T|t1|t2|ti1|ti2|ti3|ti4|b|J|W|WS|WM).*$/;  // Match lines containing > code block start
     const functionPattern = /^(\s*#(?!define|ifdef|ifndef|endif)\w+)/;  // Match lines that define a function name
 
     let startLine = null;
