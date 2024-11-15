@@ -26,6 +26,8 @@ function commandUpload() {
 
 		vscode.window.showInformationMessage(vscode.l10n.t("Uploading to {0}", ipAddress));
 
+		text = scriptUtils.stripCrFromEol(text);
+
 		sendFile(text, ipAddress);
 
 	} else {

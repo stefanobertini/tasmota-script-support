@@ -6,6 +6,11 @@ function isStripComments(text) {
     return match;
 }
 
+function stripCrFromEol(text) {
+    text = text.replace(/\r/gm, '');
+	return text;
+}
+
 function getDocumentTextWithoutComments(text, eol) {
 	const eolChar = eol==vscode.EndOfLine.LF ? "\n" : "\r\n";
 	
@@ -59,5 +64,5 @@ function getScriptSizeLimit(text) {
 }
 
 
-module.exports = { isStripComments, getDocumentTextWithoutComments, preprocess, getScriptSizeLimit };
+module.exports = { isStripComments, getDocumentTextWithoutComments, preprocess, getScriptSizeLimit, stripCrFromEol };
 
