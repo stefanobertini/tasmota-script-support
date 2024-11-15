@@ -96,7 +96,7 @@
         {
           "comment": "Function without arguments",
           "name": "entity.name.function.tasmota",
-          "match": "\\b(Epoch|OFF|ON|Status|boot|cbs|core|ctper|day|dt|dp\\d|dp\\d\\.\\d|dvnm|epoch|epoffs|eres|freq|frnm|fsm|fxt|ghum|gprs|gtmp|gtopic|gvr|heap|hours|ia|ir|iw|lip|loglvl|luip|maca|mail|micros|millis|mins|month|mqttc|mqttd|mqtts|npwr|pheap|prefix1|prefix2|prefix3|print|pwm|ram|rapp|rax|rrsn|secs|slen|smlj|stack|stkwm|sunrise|sunset|svars|time|tinit|topic|tper|tset|tstamp|upsecs|uptime|wbut|wcf|wcs|wday|wdclk|wdh:|wfs|wific|wifid|wifis|wlp|wm|year)\\b"
+          "match": "\\b(Display|DisplayClear|Epoch|OFF|ON|Status|boot|cbs|core|ctper|day|dt|dp\\d|dp\\d\\.\\d|dvnm|epoch|epoffs|eres|freq|frnm|fsm|fxt|ghum|gprs|gtmp|gtopic|gvr|heap|hours|ia|ir|iw|lip|loglvl|luip|maca|mail|micros|millis|mins|month|mqttc|mqttd|mqtts|npwr|pheap|prefix1|prefix2|prefix3|print|pwm|ram|rapp|rax|rrsn|secs|slen|smlj|stack|stkwm|sunrise|sunset|svars|time|tinit|topic|tper|tset|tstamp|upsecs|uptime|wbut|wcf|wcs|wday|wdclk|wdh:|wfs|wific|wifid|wifis|wlp|wm|year)\\b"
         },
         {
           "comment": "Function with index",
@@ -109,6 +109,14 @@
         {
           "comment": "Function with parentheses",
           "match": "\\b(abs|acos|acp|adc|af|ap|as|asc|bcd|bdir|beep|bu|c2ps|ceil|ck|codec|cos|cpf|ct|cts|delay|dp|f|fa|fc|fcs|fd|fe|ff|fl1|fl2|floor|flx|fmd|fmt|fo|fr|fra|frb|frd|frln|frn|frw|fxto|fs|fsi|ft|fw|fwa|fwb|fwp|fx|fz|gc|gi|gjp|gpwl|gwr|hd|hf|hki|hn|hni|hstr|hsvrgb|http|hx|hxi|i|i2sw|in2|ins|int|is|is1|is2|jpg|knx|lfw|log|lvgl|med|mo|mp|mpt|mux|nm|ow|pd|pl|pow|pwav|pwm\\d|rad|rb|rec|rma|rnd|round|rr|rwd|s|s2hms|s2t|sa|sas|say|sb|sc|sf|sin|sl|slp|sml|smld|smls|smw|so|sp|spi|spin|spinm|sqrt|sr|sra|srb|st|sw|swa|swb|tc|test|tm|ts1|ts2|ts3|ts4|tsn|tso|ttget|tx|udp|wav2mp3|wc|ws2812|wsa|wsc|wsf|wso|wsra|wsrs|wswa|wsws|wtch|wwd|)\\(((?:\"[^\"]*\"|[^()\"]*)*)\\)",
+          "captures": {
+            "1": { "name": "entity.name.function.tasmota" },
+            "2": { "name": "variable.parameter" }
+          }
+        },
+        {
+          "comment": "Function with inline arguments",
+          "match": "\\b(DisplayAddress|DisplayDimmer|DisplayInvert|DisplayMode|DisplayModel|DisplayRefresh|DisplaySize|DisplayRotate|DisplayText|DisplayTextNC|DisplayType|DisplayCols|DisplayRows|DisplayFont|DisplayWidth|DisplayHeight|DisplayNumber|DisplayNumberNC|DisplayFloat|DisplayFloatNC|DisplayRaw|DisplayScrollText|DisplayScrollDelay|DisplayLevel|DisplayClock)\\s+(.*?)\\s*$",
           "captures": {
             "1": { "name": "entity.name.function.tasmota" },
             "2": { "name": "variable.parameter" }
@@ -313,7 +321,7 @@
           "beginCaptures": {
             "0": { "name": "keyword.block.start" }
           },
-          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "end": "(?=^\\s*>[DdBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
           "patterns": [
             {
               "include": "#json-entities"
@@ -328,11 +336,11 @@
         },
         {
           "name": "meta.block.d.tasmota",
-          "begin": "^\\s*(>(D))\\b",
+          "begin": "^\\s*(>(D|d))\\b",
           "beginCaptures": {
             "0": { "name": "keyword.block.start.tasmota" }
           },
-          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "end": "(?=^\\s*>[DdBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
           "patterns": [
             {
               "name": "storage.modifier.tasmota",
@@ -349,7 +357,7 @@
           "beginCaptures": {
             "0": { "name": "keyword.block.start.tasmota" }
           },
-          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "end": "(?=^\\s*>[DdBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
           "patterns": [
             {
               "include": "#language"
@@ -362,7 +370,7 @@
           "beginCaptures": {
             "0": { "name": "keyword.block.start.tasmota" }
           },
-          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "end": "(?=^\\s*>[DdBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
           "patterns": [
             {
               "include": "#language"
@@ -375,7 +383,7 @@
           "beginCaptures": {
             "0": { "name": "entity.name.function.tasmota" }
           },
-          "end": "(?=^\\s*>[DBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
+          "end": "(?=^\\s*>[DdBESFRTUHhCGPjpbtJWWM]|t1|t2|ti1|ti2|ti3|ti4)|\\z|(?=^\\s*#(?!define|ifdef|ifndef|endif)\\w+)",
           "patterns": [
             {
               "include": "#json-entities"
