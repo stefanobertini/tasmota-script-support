@@ -14,7 +14,7 @@ function stripCrFromEol(text) {
 function getDocumentTextWithoutComments(text, eol) {
 	const eolChar = eol==vscode.EndOfLine.LF ? "\n" : "\r\n";
 	
-    text = text.replace(/;.*$/gm, '');
+    text = text.replace(/^\s*;.*$/gm, '');
     text = text.replace(/^(\s|\t)*/gm, '');
     text = text.split(eolChar).filter(line => line.trim() !== '').join(eolChar); 
 
