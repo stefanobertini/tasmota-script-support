@@ -43,7 +43,7 @@
       "patterns": [
         {
           "name": "comment.line.semicolon.tasmota",
-          "match": "\\s*;.*"
+          "match": "^\\s*;.*"
         }
       ]
     },
