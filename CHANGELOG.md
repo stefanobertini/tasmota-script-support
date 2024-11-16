@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.5] - 2024-11-16
+### Fixed
+- [Issue #11](https://github.com/stefanobertini/tasmota-script-support/issues/11) Incorrect CFLF management
+
 ## [1.0.4] - 2024-11-15
 
 ### Added
