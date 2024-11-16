@@ -1,3 +1,27 @@
+;Tasmota Compilation Defines
+;#ifndef USE_SCRIPT
+;#define USE_SCRIPT  
+;#endif
+;#ifdef USE_RULES
+;#undef USE_RULES
+;#endif  
+
+;Device pin connections
+;D3 GPIO0	
+;TX GPIO1	
+;D4 GPIO2	
+;RX GPIO3	
+;D2 GPIO4	
+;D1 GPIO5	
+;FL GPIO9	
+;FL GPIO10	
+;D6 GPIO12	
+;D7 GPIO13	
+;D5 GPIO14	
+;D8 GPIO15	
+;D0 GPIO16	
+;A0 GPIO17
+
 ;Device setup commands
 ;Backlog MqttHost 192.168.1.xxx; MqttPort 1883; MqttClient DVES_%06X; MqttUser xxxx; MqttPassword xxxx; Topic xxxx; MqttEnable 1;
 ;Backlog Restart 1
