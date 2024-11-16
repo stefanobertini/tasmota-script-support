@@ -1,3 +1,27 @@
+;Tasmota Compilation Defines
+;#ifndef USE_SCRIPT
+;#define USE_SCRIPT  
+;#endif
+;#ifdef USE_RULES
+;#undef USE_RULES
+;#endif  
+
+;Device pin connections
+;D3 GPIO0	
+;TX GPIO1	
+;D4 GPIO2	
+;RX GPIO3	
+;D2 GPIO4	
+;D1 GPIO5	
+;FL GPIO9	
+;FL GPIO10	
+;D6 GPIO12	
+;D7 GPIO13	
+;D5 GPIO14	
+;D8 GPIO15	
+;D0 GPIO16	
+;A0 GPIO17
+
 ;Device setup commands
 ;Backlog MqttHost 192.168.1.xxx; MqttPort 1883; MqttClient DVES_%06X; MqttUser xxxx; MqttPassword xxxx; Topic xxxx; MqttEnable 1;
 ;Backlog Restart 1
@@ -6,7 +30,8 @@
 ;stripcomments
 ;scriptsize=2560
 
->D ssize ; variables definition with optional String Size 
+; variables definition with optional String Size 
+>D ssize
 
 p:vname ;specifies permanent variables.
 t:vname ;specifies countdown timers,
@@ -25,49 +50,73 @@ m:p:vname ;defines a permanent array.
 ;- 2 = Means two
 example_variable_hover
 
->B ;executed on BOOT time before sensors are initialized and on save script
+;executed on BOOT time before sensors are initialized and on save script
+>B
 
+;executed on BOOT time after sensors are initialized
+>BS
 
->BS ;executed on BOOT time after sensors are initialized
+;executed when a Tasmota MQTT RESULT message is received, e.g., on POWER change. Also Zigbee reports to this section.
+>E
 
->E ;executed when a Tasmota MQTT RESULT message is received, e.g., on POWER change. Also Zigbee reports to this section.
+;executed every 100 ms
+>F
 
->F ;executed every 100 ms
+;executed every second
+>S
 
->S ;executed every second
+;executed on restart. p vars are saved automatically after this call
+>R
 
->R ;executed on restart. p vars are saved automatically after this call
+;executed at least at TelePeriod time (SENSOR and STATE) but mostly faster up to every 100 ms, only put tele- vars in this section
+>T
 
->T ;executed at least at TelePeriod time (SENSOR and STATE) but mostly faster up to every 100 ms, only put tele- vars in this section
+;Alexa Hue interface 
+>H
 
->H ;Alexa Hue interface 
+;passcode ;Siri Homekit interface (up to 16 virtual Homekit devices)
+>h 
 
->h ;passcode ;Siri Homekit interface (up to 16 virtual Homekit devices)
+;JSON messages from cmd status arrive here
+>U 
 
->U ;JSON messages from cmd status arrive here
+;HTML messages arrive here (on web user io event, (if defined USE_HTML_CALLBACK))
+>C 
 
->C ;HTML messages arrive here (on web user io event, (if defined USE_HTML_CALLBACK))
+;global variable updated section
+>G 
 
->G ;global variable updated section
+;any power change triggers here (if defined SCRIPT_POWER_SECTION)
+>P 
 
->P ;any power change triggers here (if defined SCRIPT_POWER_SECTION)
+;https webpage json parse arrives here
+>jp
 
->jp ;https webpage json parse arrives here
+;callback for task 1
+>t1 
+;callback for task 2
+>t2 
 
->t1 ;callback for task 1
->t2 ;callback for task 2
+;ticker callback after timer expiration
+>ti1
+;ticker callback after timer expiration
+>ti2
+;ticker callback after timer expiration
+>ti3
+;ticker callback after timer expiration
+>ti4
 
->ti1 ;ticker callback after timer expiration
->ti2 ;ticker callback after timer expiration
->ti3 ;ticker callback after timer expiration
->ti4 ;ticker callback after timer expiration
+;executed on button state change
+>b
 
->b ;executed on button state change
+;The lines in this section are published via MQTT in a JSON payload on TelePeriod. 
+>J
 
->J ;The lines in this section are published via MQTT in a JSON payload on TelePeriod. 
+;The lines in this section are displayed in the web UI main page. 
+>W
 
->W ;The lines in this section are displayed in the web UI main page. 
+;HTML statements are displayed in the sensor section of the main page
+>WS
 
->WS ;HTML statements are displayed in the sensor section of the main page
-
->WM ;HTML statements are displayed in the main section of the main page
+;HTML statements are displayed in the main section of the main page
+>WM

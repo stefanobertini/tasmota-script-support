@@ -7,18 +7,26 @@ function isStripComments(text) {
 }
 
 function stripCrFromEol(text) {
-    text = text.replace(/\r/gm, '');
+    text = text.replace(/\r\n/gm, '\n');
 	return text;
 }
 
 function getDocumentTextWithoutComments(text, eol) {
 	const eolChar = eol==vscode.EndOfLine.LF ? "\n" : "\r\n";
 	
-    text = text.replace(/^\s*;.*$/gm, '');
-    text = text.replace(/^(\s|\t)*/gm, '');
-    text = text.split(eolChar).filter(line => line.trim() !== '').join(eolChar); 
+    const lines = text.split(eolChar);
+    let result = [];
 
-	return text;
+    for (let line of lines) {
+        line = line.replace(/^\s*;.*$/gm, '');
+        line = line.replace(/^(\s|\t)*/gm, '');
+        if (line.trim() !== '') {
+            result.push(line);
+        }
+    }
+
+    const ret = result.join(eolChar);
+	return ret;
 }
 
 function preprocess(text, eol) {
@@ -65,4 +73,3 @@ function getScriptSizeLimit(text) {
 
 
 module.exports = { isStripComments, getDocumentTextWithoutComments, preprocess, getScriptSizeLimit, stripCrFromEol };
-
