@@ -26,9 +26,17 @@
 ;Backlog MqttHost 192.168.1.xxx; MqttPort 1883; MqttClient DVES_%06X; MqttUser xxxx; MqttPassword xxxx; Topic xxxx; MqttEnable 1;
 ;Backlog Restart 1
 
-;IP=<your tasmota device ip>
 ;stripcomments
 ;scriptsize=2560
+
+#define DEBUG
+
+#ifdef DEBUG
+;IP=<your tasmota developement device ip>
+#endif
+#ifndef DEBUG
+;IP=<your tasmota production device ip>
+#endif
 
 ; variables definition with optional String Size 
 >D ssize
