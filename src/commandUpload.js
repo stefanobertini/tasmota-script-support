@@ -12,14 +12,15 @@ function commandUpload() {
 	}
 
 	let text = editor.document.getText();
+
+	// Apply #ifdef and #ifndef directives
+	text = scriptUtils.preprocess(text, editor.document.eol)
+
 	const regex = /^;ip=(.*)/gmi;
 	const match = regex.exec(text);
 	if (match) {
 		const ipAddress = match[1].trim();
 		
-		// Apply #ifdef and #ifndef directives
-		text = scriptUtils.preprocess(text, editor.document.eol)
-
 		if (scriptUtils.isStripComments(text)) {
 			text = scriptUtils.getDocumentTextWithoutComments(text, editor.document.eol)
 		}
